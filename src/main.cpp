@@ -18,7 +18,7 @@ void inicializar() {
 
 void adicionarAresta(int v1, int v2) {
     matriz[v1][v2] = 1;
-    matriz[v2][v1] = 1; // grafo não direcionado
+    matriz[v2][v1] = 1;
 }
 
 void mostrarMatriz() {
