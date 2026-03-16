@@ -1,4 +1,6 @@
 #include <iostream>
+#include <queue>
+
 using namespace std;
 
 #define MAX 100
@@ -20,6 +22,7 @@ void adicionarAresta(int v1, int v2) {
 }
 
 void mostrarMatriz() {
+
     cout << "\nMatriz de Adjacencia:\n";
 
     for(int i = 0; i < vertices; i++) {
@@ -28,6 +31,34 @@ void mostrarMatriz() {
         }
         cout << endl;
     }
+}
+
+void BFS(int inicio) {
+
+    bool visitado[MAX] = {false};
+    queue<int> fila;
+
+    visitado[inicio] = true;
+    fila.push(inicio);
+
+    cout << "\nBFS: ";
+
+    while(!fila.empty()) {
+
+        int atual = fila.front();
+        fila.pop();
+
+        cout << atual << " ";
+
+        for(int i = 0; i < vertices; i++) {
+            if(matriz[atual][i] == 1 && !visitado[i]) {
+                visitado[i] = true;
+                fila.push(i);
+            }
+        }
+    }
+
+    cout << endl;
 }
 
 int main() {
@@ -42,6 +73,7 @@ int main() {
     cin >> arestas;
 
     for(int i = 0; i < arestas; i++) {
+
         int v1, v2;
 
         cout << "Aresta " << i+1 << " (v1 v2): ";
@@ -51,6 +83,13 @@ int main() {
     }
 
     mostrarMatriz();
+
+    int inicio;
+
+    cout << "\nVertice inicial para BFS: ";
+    cin >> inicio;
+
+    BFS(inicio);
 
     return 0;
 }
