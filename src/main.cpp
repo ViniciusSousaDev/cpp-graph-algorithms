@@ -61,6 +61,18 @@ void BFS(int inicio) {
     cout << endl;
 }
 
+void DFS(int v, bool visitado[]) {
+
+    visitado[v] = true;
+    cout << v << " ";
+
+    for(int i = 0; i < vertices; i++) {
+        if(matriz[v][i] == 1 && !visitado[i]) {
+            DFS(i, visitado);
+        }
+    }
+}
+
 int main() {
 
     cout << "Numero de vertices: ";
@@ -69,6 +81,7 @@ int main() {
     inicializar();
 
     int arestas;
+
     cout << "Numero de arestas: ";
     cin >> arestas;
 
@@ -86,10 +99,17 @@ int main() {
 
     int inicio;
 
-    cout << "\nVertice inicial para BFS: ";
+    cout << "\nVertice inicial para BFS e DFS: ";
     cin >> inicio;
 
     BFS(inicio);
+
+    bool visitado[MAX] = {false};
+
+    cout << "\nDFS: ";
+    DFS(inicio, visitado);
+
+    cout << endl;
 
     return 0;
 }
